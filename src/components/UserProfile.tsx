@@ -4,18 +4,20 @@ import { FaLink, FaRegStar } from "react-icons/fa";
 import { FaGithub, FaSquarePollHorizontal, FaArrowLeftLong } from "react-icons/fa6";
 import { MdArrowOutward } from "react-icons/md";
 
-function Button({ title }: { title: string }) {
+function Button({ title, href }: { title: string, href: string }) {
     return (
-        <div className="flex items-center gap-2 border border-primary rounded-2xl self-start px-4 py-2 hover:shadow-md hover:-translate-y-1 transition-all duration-300 hover:shadow-primary/50 cursor-pointer ">
-            <FaGithub />
-            {title}
-            <MdArrowOutward className="text-xl" />
-        </div>
+        <a href={href} target="_blank" rel="noopener noreferrer" className="self-start ml-auto">
+            <div className="flex items-center gap-2 border border-primary rounded-2xl px-4 py-2 hover:shadow-md hover:-translate-y-1 transition-all duration-300 hover:shadow-primary/50 cursor-pointer ">
+                <FaGithub />
+                {title}
+                <MdArrowOutward className="text-xl" />
+            </div>
+        </a>
     )
 }
 
 
-function Card({ icon, title, number }: { icon: React.ReactNode, title: string, number: string }) {
+function Card({ icon, title, number }: { icon: React.ReactNode, title: string, number: number }) {
 
 
 
@@ -46,10 +48,10 @@ function About() {
 }
 
 
-function FooterArea() {
+function FooterArea({ setSearchUser }: { setSearchUser: (username: string | null) => void }) {
     return (
         <div className="flex w-full text-gray-700 items-center justify-between text-sm font-mono">
-            <div className="flex items-center gap-3 hover:text-primary cursor-pointer transition-all duration-300">
+            <div onClick={() => setSearchUser(null)} className="flex items-center gap-3 hover:text-primary cursor-pointer transition-all duration-300">
                 <FaArrowLeftLong className="text-xl" />
                 <span className="">Search another user</span>
             </div>
@@ -61,42 +63,42 @@ function FooterArea() {
 }
 
 
-function UserProfile() {
+function UserProfile({ img, name, username, bio, location, github, gists, repos, followers, following, setSearchUser }: { img: string, name: string, username: string, bio: string, location: string, github: string, gists: number, repos: number, followers: number, following: number, setSearchUser: (username: string | null) => void }) {
     return (
         <div className="flex flex-col gap-5 border border-gray-800 p-5 rounded-xl">
             <div className="flex gap-3 items-center font-inter">
                 <img
-                    src="https://photogov-com.fra1.cdn.digitaloceanspaces.com/admin/upload/86bed38f-9035-428e-aeb8-1ac0aba4ee8a.webp"
+                    src={img}
                     alt="profile-pic"
                     className="w-40 h-40 rounded-full border border-white border-5"
                 />
                 <div className="flex flex-col  text-left gap-2">
                     <Wedget title="USER FOUND" size="mini" />
-                    <h2 className="text-2xl font-bold mt-1">Octopus</h2>
-                    <span className="text-sm text-gray-500">@octocat</span>
-                    <p className="text-sm text-gray-500">My name is OctoCat. I'm a GitHub Mascod...</p>
+                    <h2 className="text-2xl font-bold mt-1">{name}</h2>
+                    <span className="text-sm text-gray-500">@{username}</span>
+                    <p className="text-sm text-gray-500">{bio}</p>
                     <div className="flex flex-row gap-5 text-sm text-gray-500` ">
                         <div className="flex items-center gap-2">
                             <IoLocationSharp />
-                            <span>San Francisco, CA</span>
+                            <span>{location}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <FaLink />
-                            <span>https://github.com/octocat</span>
+                            <span>{github}</span>
                         </div>
                     </div>
                 </div>
-                <Button title="View on Github" />
+                <Button href={github} title="View on Github" />
             </div>
-            <div className="flex justify-around ">
-                <Card icon={<IoPeople />} title="Followers" number="12.4K" />
-                <Card icon={<IoPeople />} title="Following" number="9" />
-                <Card icon={<FaSquarePollHorizontal />} title="Public Repositories" number="42" />
-                <Card icon={<FaRegStar />} title="Public Gists" number="9" />
+            <div className="flex justify-around gap-3 ">
+                <Card icon={<IoPeople />} title="Followers" number={followers} />
+                <Card icon={<IoPeople />} title="Following" number={following} />
+                <Card icon={<FaSquarePollHorizontal />} title="Public Repositories" number={repos} />
+                <Card icon={<FaRegStar />} title="Public Gists" number={gists} />
             </div>
             {/* <hr className="border border-t border-gray-800 w-full" /> */}
             <About />
-            <FooterArea />
+            <FooterArea setSearchUser={setSearchUser} />
         </div>
     )
 }
