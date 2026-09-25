@@ -1,4 +1,5 @@
 import { Wedget } from "./Wedget"
+import type { GitHubUser } from "../App"
 import { IoPeople, IoLocationSharp, IoDocumentText } from "react-icons/io5";
 import { FaLink, FaRegStar } from "react-icons/fa";
 import { FaGithub, FaSquarePollHorizontal, FaArrowLeftLong } from "react-icons/fa6";
@@ -48,7 +49,7 @@ function About() {
 }
 
 
-function FooterArea({ setSearchUser }: { setSearchUser: (username: string | null) => void }) {
+function FooterArea({ setSearchUser }: { setSearchUser: (user: GitHubUser | null) => void }) {
     return (
         <div className="flex w-full text-gray-700 items-center justify-between text-sm font-mono">
             <div onClick={() => setSearchUser(null)} className="flex items-center gap-3 hover:text-primary cursor-pointer transition-all duration-300">
@@ -63,7 +64,7 @@ function FooterArea({ setSearchUser }: { setSearchUser: (username: string | null
 }
 
 
-function UserProfile({ img, name, username, bio, location, github, gists, repos, followers, following, setSearchUser }: { img: string, name: string, username: string, bio: string, location: string, github: string, gists: number, repos: number, followers: number, following: number, setSearchUser: (username: string | null) => void }) {
+function UserProfile({ img, name, username, bio, location, github, gists, repos, followers, following, setSearchUser }: { img: string, name: string, username: string, bio: string, location: string, github: string, gists: number, repos: number, followers: number, following: number, setSearchUser: (user: GitHubUser | null) => void }) {
     return (
         <div className="flex flex-col gap-5 border border-gray-800 p-5 rounded-xl">
             <div className="flex gap-3 items-center font-inter">

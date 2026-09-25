@@ -8,7 +8,7 @@ import UserProfile from "./components/UserProfile"
 
 const GITHUB_API_BASE_URL = "https://api.github.com"
 
-interface GitHubUser {
+export interface GitHubUser {
   login: string,
   id: number,
   avatar_url: string,
@@ -23,7 +23,7 @@ interface GitHubUser {
 
 }
 
-function HeroContent({ setUsername, user,setUser }: { setUsername: (username: string) => void, user: GitHubUser | null,setUser:(user:GitHubUser | null) => void }) {
+function HeroContent({ setUsername, user, setUser }: { setUsername: (username: string) => void, user: GitHubUser | null, setUser: (user: GitHubUser | null) => void }) {
   return (
     <div className="flex flex-col items-center justify-center gap-5 mt-10">
       <Wedget title="GITHUB USER LOOK" size="sm" />
