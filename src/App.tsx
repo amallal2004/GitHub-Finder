@@ -1,5 +1,4 @@
 import Bar from "./components/Bar"
-import Card from "./components/Card"
 import Footer from "./components/Footer"
 import Nav from "./components/Nav"
 import SearchBar from "./components/SearchBar"
@@ -22,12 +21,9 @@ function HeroContent() {
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-between h-screen w-full">
+    <div className="flex flex-col gap-5 items-center justify-between h-screen w-full">
       <Nav />
-      <Wedget title="GITHUB USER LOOK" size="sm" />
-      <SearchBar />
-      <Card />
-      {/* <HeroContent /> */}
+      <HeroContent />
       <Footer />
     </div>
   )
