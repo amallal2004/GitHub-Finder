@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Bar from "./components/Bar"
 import Footer from "./components/Footer"
 import Nav from "./components/Nav"
@@ -5,6 +6,11 @@ import SearchBar from "./components/SearchBar"
 import { Wedget } from "./components/Wedget"
 
 function HeroContent() {
+
+  const [username, setUsername] = useState('');
+
+  
+
   return (
     <div className="flex flex-col items-center justify-center gap-5 mt-10">
       <Wedget title="GITHUB USER LOOK" size="sm" />
@@ -13,7 +19,7 @@ function HeroContent() {
         <br />Developer
       </h1>
       <p className="text-gray-400 text-lg font-light font-mono">Search public GitHub profiles by username.</p>
-      <SearchBar />
+      <SearchBar onSubmit={(keyword) => setUsername(keyword)} />
       <Bar />
     </div>
   )
