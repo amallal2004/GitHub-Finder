@@ -1,9 +1,11 @@
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { FaExternalLinkAlt } from "react-icons/fa"
+import logo from "../assets/logo.png"
+
 function Nav() {
     return (
         <header className='text-white w-full flex justify-between px-10 py-5 border-b border-gray-700'>
-            <div className='flex items-center gap-5'>
-                <FaGithub className='text-white size-[36px]' />
+            <div className='flex items-center gap-3'>
+                <img src={logo} alt="logo" className='text-white size-12' />
                 <span className='text-xl text-white font-mono'>GitHub Finder</span>
             </div>
             <div className='flex items-center gap-5 text-lg'>
