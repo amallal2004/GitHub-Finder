@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="src/assets/logo.png" alt="GitHub Finder Logo" width="100" height="100" />
+  <img src="src/assets/logo.png" alt="GitHub Finder Logo" width="180" height="180" />
 
   # GitHub Finder
 
