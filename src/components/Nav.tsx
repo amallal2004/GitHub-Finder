@@ -9,8 +9,11 @@ function Nav() {
                 <span className='text-xl text-white font-mono'>GitHub Finder</span>
             </div>
             <div className='flex items-center gap-5 text-lg'>
-                <span className='link-hover'>About</span>
-                <a href=""
+                <a href="https://github.com/amallal2004"
+                    target="_blank" className='flex items-center gap-2 link-hover'>
+                    <span>Author</span>
+                </a>
+                <a href="https://github.com/amallal2004/GitHub-Finder"
                     target="_blank" className='flex items-center gap-2 link-hover'>
                     <span>GitHub</span>
                     <FaExternalLinkAlt />
