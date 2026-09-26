@@ -38,9 +38,10 @@ async function featchSuggestions (query: string): Promise<GitHubSearchUsers[] > 
       throw new Error(`User "${query}" not found`);
     }
     const data = await response.json();
-    return data.items;
+    return data.items || [];
   }catch(error){
     console.log(error);
+    return [];
   }
 }
 

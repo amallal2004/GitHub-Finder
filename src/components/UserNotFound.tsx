@@ -9,7 +9,7 @@ function Button({ onClick }: { onClick: () => void }) {
     )
 }
 
-function UserNotFound({ error, username, onClear }: { error: string, username: string, onClear: () => void }) {
+function UserNotFound({ error, username, onClear }: { error: string, username: string | null, onClear: () => void }) {
     return (
         <div className="flex flex-col items-center gap-5 justify-center font-mono text-gray-400 border border-gray-500 px-40 py-10 rounded-xl">
             <div className="flex flex-col items-center justify-center gap-3">

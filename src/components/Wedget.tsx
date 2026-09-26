@@ -1,4 +1,4 @@
-export function Wedget({ title, size }: { title: string, size: string }) {
+export function Wedget({ title, size }: { title: string, size: 'sm' | 'xs' | 'mini' }) {
 
     const sizes = {
         'sm': 'text-sm',
