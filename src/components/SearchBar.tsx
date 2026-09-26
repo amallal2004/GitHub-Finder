@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 import Suggetions from "./Suggetions";
 import { useState } from "react";
 
-function SearchBar({ onSubmit, }: { onSubmit: (keyword: string) => void; }) {
+function SearchBar({ onSubmit, onEnter }: { onSubmit: (keyword: string) => void; onEnter: (keyword: string) => void }) {
     const [keyword, setKeyword] = useState("");
 
     function handileChange(newKeyword: string) {
@@ -12,7 +12,7 @@ function SearchBar({ onSubmit, }: { onSubmit: (keyword: string) => void; }) {
     }
 
     return (
-        <div className="flex flex-col w-2xl">
+        <div className="flex flex-col w-2xl" onKeyDown={(e) => { e.key === 'Enter' && onEnter(keyword) }}>
             <div className={`flex items-center justify-between text-gray-500 w-full border border-gray-800 border-2 rounded-3xl px-4 py-3 font-mono hover:shadow-lg hover:text-gray-300 transition-colors duration-200 ease-in-out focus-within:border-primary focus-within:text-white focus-within:outline-none focus-within:shadow-lg focus-within:shadow-primary/10`}>
                 <div className='flex items-center gap-2 flex-1'>
                     <CiSearch className='' />

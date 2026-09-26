@@ -36,13 +36,13 @@ function Card({ icon, title, number }: { icon: React.ReactNode, title: string, n
 
 }
 
-function About() {
+function About({ bio }: { bio: string }) {
     return (
         <div className="flex gap-5 text-sm border-y border-gray-800 px-2 py-6">
             <IoDocumentText className="text-xl text-gray-300" />
             <div className="flex flex-col gap-2">
                 <span className="text-gray-300">About</span>
-                <p className="font-inter text-gray-500">My Name is OctoCat. I'm a GitHub Mascot...</p>
+                <p className="font-inter text-gray-500">{bio}</p>
             </div>
         </div>
     )
@@ -97,8 +97,7 @@ function UserProfile({ img, name, username, bio, location, github, gists, repos,
                 <Card icon={<FaSquarePollHorizontal />} title="Public Repositories" number={repos} />
                 <Card icon={<FaRegStar />} title="Public Gists" number={gists} />
             </div>
-            {/* <hr className="border border-t border-gray-800 w-full" /> */}
-            <About />
+            <About bio={bio || "No Bio"} />
             <FooterArea setSearchUser={setSearchUser} />
         </div>
     )
