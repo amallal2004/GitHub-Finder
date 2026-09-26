@@ -24,22 +24,45 @@ export interface GitHubUser {
 
 }
 
+export interface GitHubSearchUsers {
+  id: number,
+  login: string,
+  avatar_url: string,
+}
+
+
+async function featchSuggestions (query: string): Promise<GitHubSearchUsers[] > {
+  try{
+    const response = await fetch(`${GITHUB_API_BASE_URL}/search/users?q=${query}&per_page=3&page=1`);
+    if (!response.ok) {
+      throw new Error(`User "${query}" not found`);
+    }
+    const data = await response.json();
+    return data.items;
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
 function HeroContent({
+  user,
   setUsername,
   username,
-  user,
   setUser,
   onEnter,
   error,
-  onClear
+  onClear,
+  featchSuggestions,
 }: {
+  user: GitHubUser | null;
   setUsername: (username: string) => void,
   username: string | null,
-  user: GitHubUser | null,
   setUser: (user: GitHubUser | null) => void,
   onEnter: (keyword: string) => void,
   error: string | null,
-  onClear: () => void
+  onClear: () => void,
+  featchSuggestions: (query: string) => Promise<GitHubSearchUsers[]>
 }) {
 
   const initialState = !user && !error;
@@ -58,7 +81,12 @@ function HeroContent({
         </>
       )}
 
-      <SearchBar onEnter={onEnter} onSubmit={(keyword) => setUsername(keyword)} />
+      <SearchBar       
+          onEnter={onEnter} 
+          onSubmit={(keyword) => 
+          setUsername(keyword)} 
+          featchSuggestions={featchSuggestions} 
+      />
         
       {user && <UserProfile
         img={user.avatar_url}
@@ -73,7 +101,7 @@ function HeroContent({
         following={user.following}
         setSearchUser={setUser}
       />}
-      
+
       {error && <UserNotFound error={error} username={username} onClear={onClear} />}
       {initialState && <Bar />}
 
@@ -89,6 +117,7 @@ function App() {
   useEffect(() => {
     if (username) {
       const fetchData = async () => {
+        setError(null);
         try {
           const res = await fetch(`${GITHUB_API_BASE_URL}/users/${username}`);
 
@@ -123,7 +152,16 @@ function App() {
   return (
     <div className="flex flex-col gap-5 items-center justify-between h-screen w-full">
       <Nav />
-      <HeroContent onClear={clearUser} error={error} onEnter={handileEnter} user={user} setUser={setUser} setUsername={setUsername} username={username} />
+      <HeroContent 
+        onClear={clearUser} 
+        error={error} 
+        onEnter={handileEnter} 
+        user={user} 
+        setUser={setUser} 
+        setUsername={setUsername} 
+        username={username} 
+        featchSuggestions={featchSuggestions}
+      />
       <Footer />
     </div>
   )
